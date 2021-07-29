@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 import { Button } from "@material-ui/core";
+import ModalLogin from "../components/ModalLogin/ModalLogin";
 
 const useStyle = makeStyles(() => ({
     wrapper: {
@@ -81,76 +82,95 @@ const useStyle = makeStyles(() => ({
 
 function Signin() {
     const classes = useStyle();
-    return (
-        <div className={classes.wrapper}>
-            <div className={classes.blueSide}>
-                <TwitterIcon
-                    className={classes.blueSideTwitterBG}
-                    color="primary"
-                />
-                <div className={classes.blueSideWrapper}>
-                    <ul className={classes.blueSideList}>
-                        <li>
-                            <SearchIcon className={classes.blueSideListIcon} />
-                            <Typography variant="h6">
-                                Читай о том, что тебе нитересно
-                            </Typography>
-                        </li>
-                        <li>
-                            <PeopleOutlineIcon
-                                className={classes.blueSideListIcon}
-                            />
-                            <Typography variant="h6">
-                                Узнайте, о чем говорят в мире
-                            </Typography>
-                        </li>
-                        <li>
-                            <ModeCommentOutlinedIcon
-                                className={classes.blueSideListIcon}
-                            />
-                            <Typography variant="h6">
-                                Присоединяйтесь к сообществу
-                            </Typography>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div className={classes.loginSide}>
-                <div className={classes.loginSideWrapper}>
-                    <div>
-                        <TwitterIcon
-                            className={classes.twitterIcon}
-                            color="primary"
-                        />
-                    </div>
-                    <Typography variant="h2" className={classes.loginSideTitle}>
-                        В курсе происходящего
-                    </Typography>
-                    <Typography>
-                        <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
-                    </Typography>
 
-                    <div className="btn-wrapper">
-                        <Button
-                            className={classes.loginSideBtn}
-                            variant="contained"
-                            color="primary"
-                            fullWidth
+    const [openLogin, setOpenLogin] = useState(false);
+
+    const openModalLogin: () => void = () => {
+        setOpenLogin(true);
+    };
+    const closeModalLogin: () => void = () => {
+        setOpenLogin(false);
+    };
+
+    return (
+        <>
+            {openLogin && <ModalLogin closeModalLogin={closeModalLogin} />}
+            <div className={classes.wrapper}>
+                <div className={classes.blueSide}>
+                    <TwitterIcon
+                        className={classes.blueSideTwitterBG}
+                        color="primary"
+                    />
+                    <div className={classes.blueSideWrapper}>
+                        <ul className={classes.blueSideList}>
+                            <li>
+                                <SearchIcon
+                                    className={classes.blueSideListIcon}
+                                />
+                                <Typography variant="h6">
+                                    Читай о том, что тебе нитересно
+                                </Typography>
+                            </li>
+                            <li>
+                                <PeopleOutlineIcon
+                                    className={classes.blueSideListIcon}
+                                />
+                                <Typography variant="h6">
+                                    Узнайте, о чем говорят в мире
+                                </Typography>
+                            </li>
+                            <li>
+                                <ModeCommentOutlinedIcon
+                                    className={classes.blueSideListIcon}
+                                />
+                                <Typography variant="h6">
+                                    Присоединяйтесь к сообществу
+                                </Typography>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className={classes.loginSide}>
+                    <div className={classes.loginSideWrapper}>
+                        <div>
+                            <TwitterIcon
+                                className={classes.twitterIcon}
+                                color="primary"
+                            />
+                        </div>
+                        <Typography
+                            variant="h2"
+                            className={classes.loginSideTitle}
                         >
-                            Зарегестрироваться
-                        </Button>
-                        <Button
-                            className={classes.loginSideBtn}
-                            variant="outlined"
-                            color="primary"
-                            fullWidth
-                        >
-                            Войти
-                        </Button>
+                            В курсе происходящего
+                        </Typography>
+                        <Typography>
+                            <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
+                        </Typography>
+
+                        <div className="btn-wrapper">
+                            <Button
+                                className={classes.loginSideBtn}
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                onClick={openModalLogin}
+                            >
+                                Зарегестрироваться
+                            </Button>
+                            <Button
+                                className={classes.loginSideBtn}
+                                variant="outlined"
+                                color="primary"
+                                fullWidth
+                            >
+                                Войти
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
