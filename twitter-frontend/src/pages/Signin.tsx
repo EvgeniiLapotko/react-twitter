@@ -6,8 +6,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 import { Button } from "@material-ui/core";
-import ModalLogin from "../components/ModalLogin/ModalLogin";
-
+import { ModalLogin } from "../components";
+import { Link } from "react-router-dom";
 const useStyle = makeStyles(() => ({
     wrapper: {
         display: "flex",
@@ -77,6 +77,9 @@ const useStyle = makeStyles(() => ({
     },
     loginSideSubtitle: {
         marginBottom: 10,
+    },
+    linkBtn: {
+        textDecoration: "none",
     },
 }));
 
@@ -158,14 +161,16 @@ function Signin() {
                             >
                                 Зарегестрироваться
                             </Button>
-                            <Button
-                                className={classes.loginSideBtn}
-                                variant="outlined"
-                                color="primary"
-                                fullWidth
-                            >
-                                Войти
-                            </Button>
+                            <Link to="/enter" className={classes.linkBtn}>
+                                <Button
+                                    className={classes.loginSideBtn}
+                                    variant="outlined"
+                                    color="primary"
+                                    fullWidth
+                                >
+                                    Войти
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

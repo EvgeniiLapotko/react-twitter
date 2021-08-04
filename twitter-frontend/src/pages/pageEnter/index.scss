@@ -1,0 +1,49 @@
+.wrapper-enter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.enter {
+    margin-top: 25px;
+    &-icon {
+        color: rgba(29, 161, 242);
+        margin-bottom: 10px;
+
+        &-twitter {
+            font-size: 45px !important;
+        }
+    }
+    &-title {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    &-form {
+        margin-bottom: 25px;
+        &-inputBlock {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        &-input {
+            margin-bottom: 15px !important;
+        }
+    }
+    &-fotter {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        &-link {
+            max-width: 45%;
+            width: 100%;
+            text-decoration: none;
+            text-align: center;
+            color: rgba(29, 161, 242, 0.6);
+            transition: color 0.4s;
+            &:hover {
+                color: rgba(29, 161, 242);
+            }
+        }
+    }
+}
