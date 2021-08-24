@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import "./index.scss";
+import "./enterStyle.scss";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 

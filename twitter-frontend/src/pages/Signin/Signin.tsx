@@ -6,8 +6,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 import { Button } from "@material-ui/core";
-import { ModalLogin } from "../components";
+import { ModalLogin } from "../../components";
 import { Link } from "react-router-dom";
+
 const useStyle = makeStyles(() => ({
     wrapper: {
         display: "flex",

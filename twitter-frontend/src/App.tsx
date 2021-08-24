@@ -1,8 +1,8 @@
 import React from "react";
-import Signin from "./pages/Signin";
-import PageEnter from "./pages/pageEnter/PageEnter";
+
 import { Route } from "react-router-dom";
-import Home from "./pages/Home";
+
+import { Home, PageEnter, Signin } from "./pages";
 
 function App() {
     return (
