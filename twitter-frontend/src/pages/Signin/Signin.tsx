@@ -84,7 +84,7 @@ const useStyle = makeStyles(() => ({
     },
 }));
 
-function Signin() {
+const Signin: React.FC = () => {
     const classes = useStyle();
 
     const [openLogin, setOpenLogin] = useState(false);
@@ -178,6 +178,6 @@ function Signin() {
             </div>
         </>
     );
-}
+};
 
 export default Signin;
