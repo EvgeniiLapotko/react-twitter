@@ -1,15 +1,11 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import TwitterIcon from "@material-ui/icons/Twitter";
+
 import IconButton from "@material-ui/core/IconButton";
-import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
-import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
-import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
-import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
-import ListAltRoundedIcon from "@material-ui/icons/ListAltRounded";
+
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import FlareIcon from "@material-ui/icons/Flare";
-import DotsIcon from "@material-ui/icons/MoreHoriz";
+
 import { makeStyles } from "@material-ui/core/styles";
 import {
     Typography,
@@ -17,12 +13,13 @@ import {
     InputAdornment,
     Paper,
     Box,
-    Avatar,
 } from "@material-ui/core";
+
+import { Tweet, Navbar } from "../../components";
 
 import "./home.scss";
 
-const useHomeStyle = makeStyles(() => ({
+export const useHomeStyle = makeStyles(() => ({
     gridContainer: {
         height: "100vh",
     },
@@ -35,7 +32,7 @@ const useHomeStyle = makeStyles(() => ({
     homeTitleWrapper: {
         borderRight: "none",
         borderLeft: "none",
-        borderBottom: "none",
+
         borderRadius: "0",
     },
     homeTitle: {
@@ -62,6 +59,11 @@ const useHomeStyle = makeStyles(() => ({
         borderLeft: "none",
         borderRight: "none",
         padding: "15px",
+        transition: "all 0.3s",
+        cursor: "pointer",
+        "&:hover": {
+            backgroundColor: "rgb(244, 248, 249)",
+        },
     },
     twittAvatar: {
         display: "flex",
@@ -78,6 +80,64 @@ const useHomeStyle = makeStyles(() => ({
         top: "2px",
         right: "10px",
     },
+    iconBox: {
+        display: "flex",
+        justifyContent: "space-between",
+        maxWidth: "450px",
+        position: "relative",
+        left: "-15px",
+    },
+    iconBoxItem: {
+        "& svg:hover": {
+            color: "#1da1f2",
+        },
+        "&:hover": {
+            "& span": {
+                color: "#1da1f2",
+            },
+        },
+    },
+    tweetAvatar: {
+        width: "65px",
+        height: "65px",
+    },
+    navBarList: {
+        margin: 0,
+        padding: 0,
+        listStyle: "none",
+        li: {
+            textAlign: "center",
+            marginTop: 15,
+            display: "flex",
+            cursor: "pointer",
+            alignItems: "center",
+        },
+    },
+    navBarIcon: {
+        fontSize: 36,
+    },
+    navBarLabel: {
+        fontWeight: 700,
+        fontSize: 20,
+        paddingLeft: 25,
+    },
+    navBarIconButton: {
+        borderRadius: 35,
+        padding: "10px 15px",
+        transition: "all 0.25s",
+        "&:hover": {
+            "& h6": {
+                color: "#1da1f2",
+            },
+            "& svg": {
+                color: "#1da1f2 !important",
+            },
+        },
+    },
+    btnNavbar: {
+        marginTop: 30,
+        padding: "25px",
+    },
 }));
 
 function Home() {
@@ -86,83 +146,7 @@ function Home() {
         <section className="home">
             <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={2} sm={3}>
-                    <ul className="home__item-list">
-                        <li>
-                            <IconButton color="primary">
-                                <TwitterIcon
-                                    color="primary"
-                                    className="home__item-list-icon"
-                                />
-                            </IconButton>
-                        </li>
-
-                        <li>
-                            <IconButton>
-                                <SearchRoundedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Поиск
-                                </Typography>
-                            </IconButton>
-                        </li>
-                        <li>
-                            <IconButton>
-                                <NotificationsOutlinedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Уведомления
-                                </Typography>
-                            </IconButton>
-                        </li>
-                        <li>
-                            <IconButton>
-                                <EmailOutlinedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Сообщения
-                                </Typography>
-                            </IconButton>
-                        </li>
-                        <li>
-                            <IconButton>
-                                <BookmarkBorderOutlinedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Закладки
-                                </Typography>
-                            </IconButton>
-                        </li>
-                        <li>
-                            <IconButton>
-                                <ListAltRoundedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Список
-                                </Typography>
-                            </IconButton>
-                        </li>
-                        <li>
-                            <IconButton>
-                                <PersonOutlineOutlinedIcon className="home__item-list-icon" />
-                                <Typography
-                                    className="home__item-list-label"
-                                    variant="h6"
-                                >
-                                    Профиль
-                                </Typography>
-                            </IconButton>
-                        </li>
-                    </ul>
+                    <Navbar classes={classes} />
                 </Grid>
                 <Grid item xs={6}>
                     <Paper variant="outlined" className={classes.twitterPaper}>
@@ -179,35 +163,21 @@ function Home() {
                                 </IconButton>
                             </Box>
                         </Paper>
-                        <Paper
-                            variant="outlined"
-                            className={classes.twittWrapper}
-                        >
-                            <Grid container spacing={1}>
-                                <Grid
-                                    item
-                                    xs={2}
-                                    className={classes.twittAvatar}
-                                >
-                                    <Avatar alt="avatar">A</Avatar>
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={10}
-                                    className={classes.twittInfo}
-                                >
-                                    <Typography>
-                                        <b>I Am Developer</b> @iamdeveloper
-                                    </Typography>
-
-                                    <IconButton
-                                        className={classes.twittTitleButton}
-                                    >
-                                        <DotsIcon />
-                                    </IconButton>
-                                </Grid>
-                            </Grid>
-                        </Paper>
+                        {[
+                            ...new Array(10).fill(
+                                <Tweet
+                                    classes={classes}
+                                    text={
+                                        "Когда мне кажется, что я вот вот брошу все и уеду в Новосибирск работать официанткой (не в поликлинику же идти), я подвожу итоги того, что я уже сделала здесь. И это не считая путешествий, знакомств и подработок. Вроде я даже рада, что универ настолько критично оценил диплом НГУ"
+                                    }
+                                    user={{
+                                        avatar: "https://images.unsplash.com/photo-1440504738219-a74a11143d50?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                                        fullname: "Jen Simmons",
+                                        username: "@jensimmons",
+                                    }}
+                                />
+                            ),
+                        ]}
                     </Paper>
                 </Grid>
                 <Grid item xs={3} className="search">
