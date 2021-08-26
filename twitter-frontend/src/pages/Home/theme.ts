@@ -187,4 +187,35 @@ export const useHomeStyle = makeStyles(() => ({
         padding: "10px",
         border: "none",
     },
+    addFooter: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        maxWidth: "470px",
+        marginLeft: "auto",
+    },
+    addProgress: {
+        display: "flex",
+        alignItems: "center",
+    },
+    addProgressBlockWrapper: {
+        position: "relative",
+    },
+    addProgressBlock: {
+        width: "25px !important",
+        height: "25px !important",
+
+        marginRight: "10px",
+        marginLeft: "10px",
+        zIndex: 1,
+    },
+    addProgressBlockAbs: {
+        position: "absolute",
+        top: 0,
+        left: "10px",
+        width: "25px !important",
+        height: "25px !important",
+        color: "rgba(0,0,0, 0.2)",
+        zIndex: 0,
+    },
 }));
