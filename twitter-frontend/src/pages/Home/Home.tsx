@@ -3,147 +3,26 @@ import Grid from "@material-ui/core/Grid";
 
 import IconButton from "@material-ui/core/IconButton";
 
-import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import FlareIcon from "@material-ui/icons/Flare";
+import SettingsIcon from "@material-ui/icons/Settings";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Paper, Box } from "@material-ui/core";
+
 import {
-    Typography,
-    Input,
-    InputAdornment,
-    Paper,
-    Box,
-} from "@material-ui/core";
+    Tweet,
+    Navbar,
+    SerachFormInput,
+    Thems,
+    RecomendFollow,
+    AddedTweet,
+} from "../../components";
 
-import { Tweet, Navbar } from "../../components";
+import { useHomeStyle } from "./theme";
 
-import "./home.scss";
-
-export const useHomeStyle = makeStyles(() => ({
-    gridContainer: {
-        height: "100vh",
-    },
-    twitterPaper: {
-        borderRadius: "0",
-        borderTop: "none",
-        boorderBottom: "none",
-        height: "100%",
-    },
-    homeTitleWrapper: {
-        borderRight: "none",
-        borderLeft: "none",
-
-        borderRadius: "0",
-    },
-    homeTitle: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "5px 15px",
-        "& h6": {
-            fontWeight: "700",
-        },
-    },
-    homeTitleIcon: {
-        color: "#1da1f2",
-        fontSize: "30px",
-    },
-
-    searchUnderline: {
-        "&::before": {
-            borderBottom: "none",
-        },
-    },
-    twittWrapper: {
-        borderRadius: "0",
-        borderLeft: "none",
-        borderRight: "none",
-        padding: "15px",
-        transition: "all 0.3s",
-        cursor: "pointer",
-        "&:hover": {
-            backgroundColor: "rgb(244, 248, 249)",
-        },
-    },
-    twittAvatar: {
-        display: "flex",
-        justifyContent: "center",
-    },
-    twittInfo: {
-        position: "relative",
-        paddingRight: "50px",
-    },
-
-    twittTitleButton: {
-        padding: "6px",
-        position: "absolute",
-        top: "2px",
-        right: "10px",
-    },
-    iconBox: {
-        display: "flex",
-        justifyContent: "space-between",
-        maxWidth: "450px",
-        position: "relative",
-        left: "-15px",
-    },
-    iconBoxItem: {
-        "& svg:hover": {
-            color: "#1da1f2",
-        },
-        "&:hover": {
-            "& span": {
-                color: "#1da1f2",
-            },
-        },
-    },
-    tweetAvatar: {
-        width: "65px",
-        height: "65px",
-    },
-    navBarList: {
-        margin: 0,
-        padding: 0,
-        listStyle: "none",
-        li: {
-            textAlign: "center",
-            marginTop: 15,
-            display: "flex",
-            cursor: "pointer",
-            alignItems: "center",
-        },
-    },
-    navBarIcon: {
-        fontSize: 36,
-    },
-    navBarLabel: {
-        fontWeight: 700,
-        fontSize: 20,
-        paddingLeft: 25,
-    },
-    navBarIconButton: {
-        borderRadius: 35,
-        padding: "10px 15px",
-        transition: "all 0.25s",
-        "&:hover": {
-            "& h6": {
-                color: "#1da1f2",
-            },
-            "& svg": {
-                color: "#1da1f2 !important",
-            },
-        },
-    },
-    btnNavbar: {
-        marginTop: 30,
-        padding: "25px",
-    },
-}));
-
-function Home() {
+const Home: React.FC = (): React.ReactElement => {
     const classes = useHomeStyle();
     return (
-        <section className="home">
+        <section className={classes.home}>
             <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={2} sm={3}>
                     <Navbar classes={classes} />
@@ -163,6 +42,8 @@ function Home() {
                                 </IconButton>
                             </Box>
                         </Paper>
+                        <AddedTweet classes={classes} />
+
                         {[
                             ...new Array(10).fill(
                                 <Tweet
@@ -180,22 +61,52 @@ function Home() {
                         ]}
                     </Paper>
                 </Grid>
-                <Grid item xs={3} className="search">
-                    <Input
-                        className="search__form-input"
-                        id="input-with-icon-adornment"
-                        placeholder={"Поиск в Твиттере"}
-                        startAdornment={
-                            <InputAdornment position="start">
-                                <SearchRoundedIcon className="search__form-input-icon" />
-                            </InputAdornment>
-                        }
-                        fullWidth
-                    />
+                <Grid item xs={3}>
+                    <div className={classes.aside}>
+                        <SerachFormInput />
+                        <Paper className={classes.thems}>
+                            <div className={classes.themsTitle}>
+                                <Typography variant="h6">
+                                    Актуальные темы
+                                </Typography>
+                                <IconButton color="primary">
+                                    <SettingsIcon />
+                                </IconButton>
+                            </div>
+                            {[
+                                ...new Array(3).fill(
+                                    <Thems
+                                        classes={classes}
+                                        title={"Kabul"}
+                                        tweets={156}
+                                    />
+                                ),
+                            ]}
+                        </Paper>
+                        <Paper className={classes.thems}>
+                            <div className={classes.themsTitle}>
+                                <Typography variant="h6">
+                                    Кого читать
+                                </Typography>
+                            </div>
+                            {[
+                                ...new Array(2).fill(
+                                    <RecomendFollow
+                                        avatar="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                        classes={classes}
+                                        user={{
+                                            fullname: "Fursona Pins",
+                                            username: "@FursonaPins",
+                                        }}
+                                    />
+                                ),
+                            ]}
+                        </Paper>
+                    </div>
                 </Grid>
             </Grid>
         </section>
     );
-}
+};
 
 export default Home;

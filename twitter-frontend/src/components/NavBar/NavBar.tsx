@@ -10,7 +10,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 
 import IconButton from "@material-ui/core/IconButton";
 import { Button, Typography } from "@material-ui/core";
-import { useHomeStyle } from "../../pages/Home/Home";
+import { useHomeStyle } from "../../pages/Home/theme";
 
 interface TypeNavbar {
     classes: ReturnType<typeof useHomeStyle>;

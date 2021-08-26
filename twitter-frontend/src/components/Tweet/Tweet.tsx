@@ -7,8 +7,7 @@ import CommentIcon from "@material-ui/icons/ChatBubbleOutline";
 import RetwittIcon from "@material-ui/icons/Repeat";
 import LikeIcon from "@material-ui/icons/FavoriteBorder";
 import ShareIcon from "@material-ui/icons/Share";
-
-import { useHomeStyle } from "../../pages/Home/Home";
+import { useHomeStyle } from "../../pages/Home/theme";
 
 interface TypeTweet {
     text: string;
