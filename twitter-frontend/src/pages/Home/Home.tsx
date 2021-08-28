@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FlareIcon from "@material-ui/icons/Flare";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import { Typography, Paper, Box } from "@material-ui/core";
+import { Typography, Paper, Box, CircularProgress } from "@material-ui/core";
 
 import {
     Tweet,
@@ -18,9 +18,27 @@ import {
 } from "../../components";
 
 import { useHomeStyle } from "./theme";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTweets } from "../../store/ducks/tweets/actionsCreators/actionCreators";
+import {
+    selectIsLoadingTweets,
+    selectLoadingState,
+    selectTweetsItem,
+} from "../../store/ducks/tweets/selectors";
 
 const Home: React.FC = (): React.ReactElement => {
     const classes = useHomeStyle();
+    const dispatch = useDispatch();
+    const tweets = useSelector(selectTweetsItem);
+
+    const isLoading = useSelector(selectIsLoadingTweets);
+
+    const handleFetchTweets = () => dispatch(fetchTweets());
+
+    React.useEffect(() => {
+        handleFetchTweets();
+    }, []);
+
     return (
         <section className={classes.home}>
             <Grid container spacing={2} className={classes.gridContainer}>
@@ -42,23 +60,24 @@ const Home: React.FC = (): React.ReactElement => {
                                 </IconButton>
                             </Box>
                         </Paper>
-                        <AddedTweet classes={classes} />
+                        <AddedTweet classes={classes} rowsMin={5} />
 
-                        {[
-                            ...new Array(10).fill(
+                        {isLoading ? (
+                            <CircularProgress />
+                        ) : (
+                            tweets.map((item) => (
                                 <Tweet
+                                    key={item._id}
                                     classes={classes}
-                                    text={
-                                        "Когда мне кажется, что я вот вот брошу все и уеду в Новосибирск работать официанткой (не в поликлинику же идти), я подвожу итоги того, что я уже сделала здесь. И это не считая путешествий, знакомств и подработок. Вроде я даже рада, что универ настолько критично оценил диплом НГУ"
-                                    }
+                                    text={item.text}
                                     user={{
-                                        avatar: "https://images.unsplash.com/photo-1440504738219-a74a11143d50?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                                        fullname: "Jen Simmons",
-                                        username: "@jensimmons",
+                                        avatar: item.user.avatar,
+                                        fullname: item.user.fullname,
+                                        username: item.user.username,
                                     }}
                                 />
-                            ),
-                        ]}
+                            ))
+                        )}
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>

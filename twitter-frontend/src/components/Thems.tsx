@@ -1,6 +1,6 @@
 import { IconButton, Typography } from "@material-ui/core";
 import React from "react";
-import { useHomeStyle } from "../../pages/Home/theme";
+import { useHomeStyle } from "../pages/Home/theme";
 import DotsIcon from "@material-ui/icons/MoreHoriz";
 
 interface TypeTheme {

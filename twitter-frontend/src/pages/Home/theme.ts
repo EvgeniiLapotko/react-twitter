@@ -218,4 +218,16 @@ export const useHomeStyle = makeStyles(() => ({
         color: "rgba(0,0,0, 0.2)",
         zIndex: 0,
     },
+    modalWrapper: {
+        maxWidth: "600px",
+        width: "100%",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        backgroundColor: "#fff",
+        padding: "25px",
+        transform: "translate(-50%, -50%)",
+        borderRadius: "15px",
+        boxShadow: "0 0 5px #ddd",
+    },
 }));

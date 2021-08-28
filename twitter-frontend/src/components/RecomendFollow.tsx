@@ -1,6 +1,6 @@
 import { Avatar, IconButton, Typography } from "@material-ui/core";
 import React from "react";
-import { useHomeStyle } from "../../pages/Home/theme";
+import { useHomeStyle } from "../pages/Home/theme";
 import AddedUserIcon from "@material-ui/icons/PersonAddOutlined";
 
 interface TypeTheme {

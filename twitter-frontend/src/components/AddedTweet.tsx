@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar, Box, Button, IconButton } from "@material-ui/core";
-import { useHomeStyle } from "../../pages/Home/theme";
+import { useHomeStyle } from "../pages/Home/theme";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -9,10 +9,14 @@ import PictureIcon from "@material-ui/icons/CropOriginal";
 
 interface TypeAddedTweet {
     classes: ReturnType<typeof useHomeStyle>;
+    rowsMax?: number;
+    rowsMin?: number;
 }
 
 const AddedTweet: React.FC<TypeAddedTweet> = ({
     classes,
+    rowsMax,
+    rowsMin,
 }: TypeAddedTweet): React.ReactElement => {
     const [inputFeild, setInputFeild] = React.useState<string>("");
 
@@ -43,7 +47,8 @@ const AddedTweet: React.FC<TypeAddedTweet> = ({
                     onChange={handleChange}
                     value={inputFeild}
                     placeholder="Что происходит?"
-                    rowsMin={5}
+                    rowsMin={rowsMin}
+                    rowsMax={rowsMax}
                     className={classes.addHeaderInput}
                 />
             </div>
