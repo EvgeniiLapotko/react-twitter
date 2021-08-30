@@ -1,5 +1,6 @@
 import { IconButton, Typography } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import { useHomeStyle } from "../pages/Home/theme";
 import DotsIcon from "@material-ui/icons/MoreHoriz";
 
@@ -16,14 +17,16 @@ const Thems: React.FC<TypeTheme> = ({
 }: TypeTheme): React.ReactElement => {
     return (
         <div className={classes.themsTweet}>
-            <div>
-                <Typography className={classes.themsTweetTitle}>
-                    {title}
-                </Typography>
-                <Typography className={classes.themsTweetSubTitle}>
-                    Твитов: {tweets}
-                </Typography>
-            </div>
+            <Link to={`/search?q=${title}`} className={classes.tagsWraperLink}>
+                <div>
+                    <Typography className={classes.themsTweetTitle}>
+                        {title}
+                    </Typography>
+                    <Typography className={classes.themsTweetSubTitle}>
+                        Твитов: {tweets}
+                    </Typography>
+                </div>
+            </Link>
             <IconButton>
                 <DotsIcon />
             </IconButton>

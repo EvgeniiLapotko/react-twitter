@@ -14,6 +14,8 @@ import Modal from "@material-ui/core/Modal";
 import { useHomeStyle } from "../pages/Home/theme";
 import AddedTweet from "./AddedTweet";
 
+import { Link } from "react-router-dom";
+
 interface TypeNavbar {
     classes: ReturnType<typeof useHomeStyle>;
 }
@@ -33,12 +35,14 @@ const NavBar: React.FC<TypeNavbar> = ({
         <>
             <ul className={classes.navBarList}>
                 <li>
-                    <IconButton color="primary">
-                        <TwitterIcon
-                            color="primary"
-                            className={classes.navBarIcon}
-                        />
-                    </IconButton>
+                    <Link to="/">
+                        <IconButton color="primary">
+                            <TwitterIcon
+                                color="primary"
+                                className={classes.navBarIcon}
+                            />
+                        </IconButton>
+                    </Link>
                 </li>
 
                 <li>

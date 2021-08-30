@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
 import IconButton from "@material-ui/core/IconButton";
@@ -19,25 +20,47 @@ import {
 
 import { useHomeStyle } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTweets } from "../../store/ducks/tweets/actionsCreators/actionCreators";
+
 import {
+    selectIsErrorTweets,
     selectIsLoadingTweets,
-    selectLoadingState,
     selectTweetsItem,
 } from "../../store/ducks/tweets/selectors";
+import { fetchTags } from "../../store/ducks/tags/actionsCreators/actionCreators";
+import { fetchTweets } from "../../store/ducks/tweets/actionsCreators/actionCreators";
+import {
+    selectIsErrorTags,
+    selectIsLoadingTags,
+    selectTagsItem,
+} from "../../store/ducks/tags/selectors";
+import {
+    selectIsErrorRecomend,
+    selectIsLoadingRecomend,
+    selectRecomendUsersItem,
+} from "../../store/ducks/recomendUsers/selectors";
+import { fetchRecomendUsers } from "../../store/ducks/recomendUsers/actionsCreators/actionCreators";
 
 const Home: React.FC = (): React.ReactElement => {
     const classes = useHomeStyle();
     const dispatch = useDispatch();
+
     const tweets = useSelector(selectTweetsItem);
+    const tags = useSelector(selectTagsItem);
+    const recommendUsers = useSelector(selectRecomendUsersItem);
 
     const isLoading = useSelector(selectIsLoadingTweets);
+    const isLoadingTag = useSelector(selectIsLoadingTags);
+    const isLoadingRecommendUser = useSelector(selectIsLoadingRecomend);
 
-    const handleFetchTweets = () => dispatch(fetchTweets());
+    const isErrorTweets = useSelector(selectIsErrorTweets);
+    const isErrorTags = useSelector(selectIsErrorTags);
+    const isErrorRecommendUsers = useSelector(selectIsErrorRecomend);
 
     React.useEffect(() => {
-        handleFetchTweets();
-    }, []);
+        dispatch(fetchTweets());
+        dispatch(fetchTags());
+        dispatch(fetchRecomendUsers());
+    }, [dispatch]);
 
     return (
         <section className={classes.home}>
@@ -61,23 +84,36 @@ const Home: React.FC = (): React.ReactElement => {
                             </Box>
                         </Paper>
                         <AddedTweet classes={classes} rowsMin={5} />
-
-                        {isLoading ? (
-                            <CircularProgress />
-                        ) : (
-                            tweets.map((item) => (
-                                <Tweet
-                                    key={item._id}
-                                    classes={classes}
-                                    text={item.text}
-                                    user={{
-                                        avatar: item.user.avatar,
-                                        fullname: item.user.fullname,
-                                        username: item.user.username,
+                        <Route exact path="/">
+                            {isErrorTweets ? (
+                                <h1 style={{ textAlign: "center" }}>
+                                    Ничего не найдено проверьте соединение с
+                                    интернетом
+                                </h1>
+                            ) : isLoading ? (
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        marginTop: "25px",
                                     }}
-                                />
-                            ))
-                        )}
+                                >
+                                    <CircularProgress />
+                                </div>
+                            ) : (
+                                tweets.map((item) => (
+                                    <Tweet
+                                        key={item._id}
+                                        classes={classes}
+                                        text={item.text}
+                                        user={{
+                                            avatar: item.user.avatar,
+                                            fullname: item.user.fullname,
+                                            username: item.user.username,
+                                        }}
+                                    />
+                                ))
+                            )}
+                        </Route>
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
@@ -92,15 +128,35 @@ const Home: React.FC = (): React.ReactElement => {
                                     <SettingsIcon />
                                 </IconButton>
                             </div>
-                            {[
-                                ...new Array(3).fill(
+                            {isErrorTags ? (
+                                <h6
+                                    style={{
+                                        textAlign: "center",
+                                        paddingBottom: "25px",
+                                    }}
+                                >
+                                    Ничего не найдено
+                                </h6>
+                            ) : isLoadingTag ? (
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        paddingTop: "25px",
+                                        paddingBottom: "25px",
+                                    }}
+                                >
+                                    <CircularProgress />
+                                </div>
+                            ) : (
+                                tags.map((item) => (
                                     <Thems
+                                        key={item._id}
                                         classes={classes}
-                                        title={"Kabul"}
-                                        tweets={156}
+                                        title={item.tags}
+                                        tweets={item.count}
                                     />
-                                ),
-                            ]}
+                                ))
+                            )}
                         </Paper>
                         <Paper className={classes.thems}>
                             <div className={classes.themsTitle}>
@@ -108,18 +164,38 @@ const Home: React.FC = (): React.ReactElement => {
                                     Кого читать
                                 </Typography>
                             </div>
-                            {[
-                                ...new Array(2).fill(
+                            {isErrorRecommendUsers ? (
+                                <h6
+                                    style={{
+                                        textAlign: "center",
+                                        paddingBottom: "25px",
+                                    }}
+                                >
+                                    Нет рекомендаций
+                                </h6>
+                            ) : isLoadingRecommendUser ? (
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        paddingTop: "25px",
+                                        paddingBottom: "25px",
+                                    }}
+                                >
+                                    <CircularProgress />
+                                </div>
+                            ) : (
+                                recommendUsers.map((item) => (
                                     <RecomendFollow
-                                        avatar="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                        key={item._id}
                                         classes={classes}
+                                        avatar={item.avatar}
                                         user={{
-                                            fullname: "Fursona Pins",
-                                            username: "@FursonaPins",
+                                            fullname: item.fullname,
+                                            username: item.username,
                                         }}
                                     />
-                                ),
-                            ]}
+                                ))
+                            )}
                         </Paper>
                     </div>
                 </Grid>

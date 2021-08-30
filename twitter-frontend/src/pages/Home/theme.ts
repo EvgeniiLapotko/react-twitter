@@ -230,4 +230,8 @@ export const useHomeStyle = makeStyles(() => ({
         borderRadius: "15px",
         boxShadow: "0 0 5px #ddd",
     },
+    tagsWraperLink: {
+        textDecoration: "none",
+        color: "inherit",
+    },
 }));

@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchTweetApi } from "../../../services/api/fetchApi";
+import { fetchApi } from "../../../services/api/fetchApi";
 import {
     setStatusTweets,
     setTweets,
@@ -9,7 +9,7 @@ import { LoadingState } from "./contracts/types";
 
 export function* fetchTweetsRequest(): any {
     try {
-        const data = yield call(fetchTweetApi.fetchTweet);
+        const data = yield call(fetchApi.fetchTweet);
         yield put(setTweets(data));
     } catch (error) {
         yield put(setStatusTweets(LoadingState.ERROR));

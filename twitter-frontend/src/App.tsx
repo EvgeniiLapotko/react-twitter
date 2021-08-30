@@ -7,13 +7,13 @@ import { Home, PageEnter, Signin } from "./pages";
 function App() {
     return (
         <div className="App">
-            <Route exact path="/">
+            <Route path="/">
                 <Home />
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
                 <Signin />
             </Route>
-            <Route path="/enter">
+            <Route exact path="/enter">
                 <PageEnter />
             </Route>
         </div>

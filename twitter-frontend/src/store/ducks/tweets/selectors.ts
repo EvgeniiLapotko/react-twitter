@@ -13,3 +13,6 @@ export const selectIsLoadingTweets = (state: RootState): boolean =>
 
 export const selectIsLoadedTweets = (state: RootState): boolean =>
     selectLoadingState(state) === LoadingState.LOADED;
+
+export const selectIsErrorTweets = (state: RootState): boolean =>
+    selectLoadingState(state) === LoadingState.ERROR;

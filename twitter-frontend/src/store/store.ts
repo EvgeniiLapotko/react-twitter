@@ -3,6 +3,8 @@ import { rootReduser } from "./rootReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import { TweetsType } from "./ducks/tweets/contracts/types";
+import { TagsType } from "./ducks/tags/contracts/types";
+import { RecomendUserType } from "./ducks/recomendUsers/contracts/types";
 
 declare global {
     interface Window {
@@ -19,6 +21,8 @@ const composeEnhancers =
 
 export interface RootState {
     tweets: TweetsType;
+    tags: TagsType;
+    recommendUsers: RecomendUserType;
 }
 
 export const store = createStore(
