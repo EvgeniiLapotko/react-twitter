@@ -3,11 +3,12 @@ import { fetchApi } from "../../../services/api/fetchApi";
 import {
     addTweets,
     FetchAddTweetsActionInterface,
+    setStatusAdd,
     setStatusTweets,
     setTweets,
     TweetsActionsType,
 } from "./actionsCreators/actionCreators";
-import { LoadingState } from "./contracts/types";
+import { AddLoadingState, LoadingState } from "./contracts/types";
 
 export function* fetchTweetsRequest(): any {
     try {
@@ -33,7 +34,7 @@ export function* addTweetsRequest({
         const items = yield call(fetchApi.addTweet, data);
         yield put(addTweets(items));
     } catch (error) {
-        yield put(setStatusTweets(LoadingState.ERROR));
+        yield put(setStatusAdd(AddLoadingState.ERROR));
     }
 }
 export function* watchTweetsAsync() {

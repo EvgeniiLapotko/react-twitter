@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { LoadingState, Tweets } from "../contracts/types";
+import { AddLoadingState, LoadingState, Tweets } from "../contracts/types";
 
 export enum TweetsActionsType {
     SET_TWEETS = "tweets/SET_TWEETS",
@@ -7,6 +7,7 @@ export enum TweetsActionsType {
     ADD_TWEETS = "tweets/ADD_TWEETS",
     FETCH_TWEETS = "tweets/FETCH_TWEETS",
     SET_STATUS = "tweets/SET_STATUS",
+    SET_STATUS_ADD = "tweets/SET_STATUS_ADD",
 }
 
 export interface SetTweetsActionInterface extends Action<TweetsActionsType> {
@@ -31,6 +32,10 @@ export interface SetStatusActionInterface extends Action<TweetsActionsType> {
     type: TweetsActionsType.SET_STATUS;
     payload: LoadingState;
 }
+export interface SetStatusAddActionInterface extends Action<TweetsActionsType> {
+    type: TweetsActionsType.SET_STATUS_ADD;
+    payload: AddLoadingState;
+}
 
 export const setTweets = (payload: Tweets[]): SetTweetsActionInterface => ({
     type: TweetsActionsType.SET_TWEETS,
@@ -53,6 +58,12 @@ export const setStatusTweets = (
     type: TweetsActionsType.SET_STATUS,
     payload,
 });
+export const setStatusAdd = (
+    payload: AddLoadingState
+): SetStatusAddActionInterface => ({
+    type: TweetsActionsType.SET_STATUS_ADD,
+    payload,
+});
 export const fetchTweets = (): FetchTweetsActionInterface => ({
     type: TweetsActionsType.FETCH_TWEETS,
 });
@@ -62,4 +73,5 @@ export type TweetsAction =
     | FetchTweetsActionInterface
     | SetStatusActionInterface
     | FetchAddTweetsActionInterface
-    | AddTweetsActionInterface;
+    | AddTweetsActionInterface
+    | SetStatusAddActionInterface;

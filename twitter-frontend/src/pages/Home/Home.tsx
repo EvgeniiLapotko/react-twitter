@@ -134,19 +134,21 @@ const Home: React.FC = (): React.ReactElement => {
                                     <CircularProgress />
                                 </div>
                             ) : (
-                                tweets.map((item) => (
-                                    <Tweet
-                                        key={item._id}
-                                        id={item._id}
-                                        classes={classes}
-                                        text={item.text}
-                                        user={{
-                                            avatar: item.user.avatar,
-                                            fullname: item.user.fullname,
-                                            username: item.user.username,
-                                        }}
-                                    />
-                                ))
+                                tweets
+                                    .map((item) => (
+                                        <Tweet
+                                            key={item._id}
+                                            id={item._id}
+                                            classes={classes}
+                                            text={item.text}
+                                            user={{
+                                                avatar: item.user.avatar,
+                                                fullname: item.user.fullname,
+                                                username: item.user.username,
+                                            }}
+                                        />
+                                    ))
+                                    .reverse()
                             )}
                         </Route>
                         <Route path="/tweet/:id">

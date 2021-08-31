@@ -3,11 +3,12 @@ import {
     TweetsAction,
     TweetsActionsType,
 } from "./actionsCreators/actionCreators";
-import { LoadingState, TweetsType } from "./contracts/types";
+import { AddLoadingState, LoadingState, TweetsType } from "./contracts/types";
 
 const initialTweetsState: TweetsType = {
     item: [],
     loadingState: LoadingState.NEVER,
+    addTweetState: AddLoadingState.NEVER,
 };
 
 export const tweetsReduser = produce(
@@ -23,8 +24,15 @@ export const tweetsReduser = produce(
             draft.item = [];
             draft.loadingState = LoadingState.LOADING;
         }
+        if (action.type === TweetsActionsType.FETCH_ADD_TWEETS) {
+            draft.addTweetState = AddLoadingState.LOADING;
+        }
         if (action.type === TweetsActionsType.ADD_TWEETS) {
             draft.item.push(action.payload);
+            draft.addTweetState = AddLoadingState.NEVER;
+        }
+        if (action.type === TweetsActionsType.SET_STATUS_ADD) {
+            draft.addTweetState = AddLoadingState.ERROR;
         }
     },
     initialTweetsState

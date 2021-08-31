@@ -4,6 +4,11 @@ export enum LoadingState {
     ERROR = "ERROR",
     NEVER = "NEVER",
 }
+export enum AddLoadingState {
+    LOADING = "LOADING",
+    ERROR = "ERROR",
+    NEVER = "NEVER",
+}
 
 export interface Tweets {
     _id: string;
@@ -18,4 +23,5 @@ export interface Tweets {
 export interface TweetsType {
     item: Tweets[];
     loadingState: LoadingState;
+    addTweetState: AddLoadingState;
 }
