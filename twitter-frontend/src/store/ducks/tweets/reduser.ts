@@ -23,6 +23,9 @@ export const tweetsReduser = produce(
             draft.item = [];
             draft.loadingState = LoadingState.LOADING;
         }
+        if (action.type === TweetsActionsType.ADD_TWEETS) {
+            draft.item.push(action.payload);
+        }
     },
     initialTweetsState
 );

@@ -118,7 +118,7 @@ const Home: React.FC = (): React.ReactElement => {
                         <Route path={["/home", "/search"]}>
                             <AddedTweet classes={classes} rowsMin={5} />
                         </Route>
-                        <Route path={["/home", "/"]} exact>
+                        <Route path={["/home"]} exact>
                             {isErrorTweets ? (
                                 <h1 style={{ textAlign: "center" }}>
                                     Ничего не найдено проверьте соединение с

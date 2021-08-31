@@ -3,6 +3,8 @@ import { LoadingState, Tweets } from "../contracts/types";
 
 export enum TweetsActionsType {
     SET_TWEETS = "tweets/SET_TWEETS",
+    FETCH_ADD_TWEETS = "tweets/FETCH_ADD_TWEETS",
+    ADD_TWEETS = "tweets/ADD_TWEETS",
     FETCH_TWEETS = "tweets/FETCH_TWEETS",
     SET_STATUS = "tweets/SET_STATUS",
 }
@@ -10,6 +12,16 @@ export enum TweetsActionsType {
 export interface SetTweetsActionInterface extends Action<TweetsActionsType> {
     type: TweetsActionsType.SET_TWEETS;
     payload: Tweets[];
+}
+
+export interface FetchAddTweetsActionInterface
+    extends Action<TweetsActionsType> {
+    type: TweetsActionsType.FETCH_ADD_TWEETS;
+    payload: string;
+}
+export interface AddTweetsActionInterface extends Action<TweetsActionsType> {
+    type: TweetsActionsType.ADD_TWEETS;
+    payload: Tweets;
 }
 
 export interface FetchTweetsActionInterface extends Action<TweetsActionsType> {
@@ -22,6 +34,16 @@ export interface SetStatusActionInterface extends Action<TweetsActionsType> {
 
 export const setTweets = (payload: Tweets[]): SetTweetsActionInterface => ({
     type: TweetsActionsType.SET_TWEETS,
+    payload,
+});
+export const fetchAddTweets = (
+    payload: string
+): FetchAddTweetsActionInterface => ({
+    type: TweetsActionsType.FETCH_ADD_TWEETS,
+    payload,
+});
+export const addTweets = (payload: Tweets): AddTweetsActionInterface => ({
+    type: TweetsActionsType.ADD_TWEETS,
     payload,
 });
 
@@ -38,4 +60,6 @@ export const fetchTweets = (): FetchTweetsActionInterface => ({
 export type TweetsAction =
     | SetTweetsActionInterface
     | FetchTweetsActionInterface
-    | SetStatusActionInterface;
+    | SetStatusActionInterface
+    | FetchAddTweetsActionInterface
+    | AddTweetsActionInterface;

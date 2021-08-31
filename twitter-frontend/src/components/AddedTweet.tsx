@@ -3,9 +3,12 @@ import { Avatar, Box, Button, IconButton } from "@material-ui/core";
 import { useHomeStyle } from "../pages/Home/theme";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import SmileIcon from "@material-ui/icons/SentimentSatisfied";
 import PictureIcon from "@material-ui/icons/CropOriginal";
+import { useDispatch } from "react-redux";
+import { fetchAddTweets } from "../store/ducks/tweets/actionsCreators/actionCreators";
 
 interface TypeAddedTweet {
     classes: ReturnType<typeof useHomeStyle>;
@@ -18,6 +21,7 @@ const AddedTweet: React.FC<TypeAddedTweet> = ({
     rowsMax,
     rowsMin,
 }: TypeAddedTweet): React.ReactElement => {
+    const dispatch = useDispatch();
     const [inputFeild, setInputFeild] = React.useState<string>("");
 
     const MAX_LENGTH = 290;
@@ -31,6 +35,7 @@ const AddedTweet: React.FC<TypeAddedTweet> = ({
     };
 
     const handleAddTweet = (): void => {
+        dispatch(fetchAddTweets(inputFeild));
         setInputFeild("");
     };
     return (
@@ -90,15 +95,30 @@ const AddedTweet: React.FC<TypeAddedTweet> = ({
                             </div>
                         </>
                     ) : null}
-
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        disabled={textLimiPercent >= 100}
-                        onClick={handleAddTweet}
-                    >
-                        Tweet
-                    </Button>
+                    <>
+                        {textLimiPercent >= 100 ? (
+                            <Tooltip title="Невозможно отправить твит">
+                                <div>
+                                    <Button
+                                        color="primary"
+                                        variant="contained"
+                                        disabled
+                                        onClick={handleAddTweet}
+                                    >
+                                        Tweet
+                                    </Button>
+                                </div>
+                            </Tooltip>
+                        ) : (
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                onClick={handleAddTweet}
+                            >
+                                Tweet
+                            </Button>
+                        )}
+                    </>
                 </div>
             </div>
         </Box>
