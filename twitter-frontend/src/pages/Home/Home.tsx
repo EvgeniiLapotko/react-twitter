@@ -1,8 +1,9 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
 import IconButton from "@material-ui/core/IconButton";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import FlareIcon from "@material-ui/icons/Flare";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -40,6 +41,8 @@ import {
 } from "../../store/ducks/recomendUsers/selectors";
 import { fetchRecomendUsers } from "../../store/ducks/recomendUsers/actionsCreators/actionCreators";
 
+import FullTweet from "./components/FullTweet";
+
 const Home: React.FC = (): React.ReactElement => {
     const classes = useHomeStyle();
     const dispatch = useDispatch();
@@ -70,21 +73,52 @@ const Home: React.FC = (): React.ReactElement => {
                 </Grid>
                 <Grid item xs={6}>
                     <Paper variant="outlined" className={classes.twitterPaper}>
-                        <Paper
-                            variant="outlined"
-                            className={classes.homeTitleWrapper}
-                        >
-                            <Box className={classes.homeTitle}>
-                                <Typography variant="h6">Главная</Typography>
-                                <IconButton>
-                                    <FlareIcon
-                                        className={classes.homeTitleIcon}
-                                    />
-                                </IconButton>
-                            </Box>
-                        </Paper>
-                        <AddedTweet classes={classes} rowsMin={5} />
-                        <Route exact path="/">
+                        <Route path={["/home"]}>
+                            <Paper
+                                variant="outlined"
+                                className={classes.homeTitleWrapper}
+                            >
+                                <Box className={classes.homeTitle}>
+                                    <Typography variant="h6">Твиты</Typography>
+                                    <IconButton>
+                                        <FlareIcon
+                                            className={classes.homeTitleIcon}
+                                        />
+                                    </IconButton>
+                                </Box>
+                            </Paper>
+                        </Route>
+                        <Route path={["/tweet"]}>
+                            <Paper
+                                variant="outlined"
+                                className={classes.homeTitleWrapper}
+                            >
+                                <Box className={classes.homeTitle}>
+                                    <div className={classes.tweetTitle}>
+                                        <Link to="/home">
+                                            <IconButton color="primary">
+                                                <ArrowBackIcon />
+                                            </IconButton>
+                                        </Link>
+
+                                        <Typography variant="h6">
+                                            Твитнуть
+                                        </Typography>
+                                    </div>
+
+                                    <IconButton>
+                                        <FlareIcon
+                                            className={classes.homeTitleIcon}
+                                        />
+                                    </IconButton>
+                                </Box>
+                            </Paper>
+                        </Route>
+
+                        <Route path={["/home", "/search"]}>
+                            <AddedTweet classes={classes} rowsMin={5} />
+                        </Route>
+                        <Route path={["/home", "/"]} exact>
                             {isErrorTweets ? (
                                 <h1 style={{ textAlign: "center" }}>
                                     Ничего не найдено проверьте соединение с
@@ -103,6 +137,7 @@ const Home: React.FC = (): React.ReactElement => {
                                 tweets.map((item) => (
                                     <Tweet
                                         key={item._id}
+                                        id={item._id}
                                         classes={classes}
                                         text={item.text}
                                         user={{
@@ -113,6 +148,9 @@ const Home: React.FC = (): React.ReactElement => {
                                     />
                                 ))
                             )}
+                        </Route>
+                        <Route path="/tweet/:id">
+                            <FullTweet />
                         </Route>
                     </Paper>
                 </Grid>

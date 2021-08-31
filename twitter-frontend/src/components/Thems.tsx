@@ -17,7 +17,10 @@ const Thems: React.FC<TypeTheme> = ({
 }: TypeTheme): React.ReactElement => {
     return (
         <div className={classes.themsTweet}>
-            <Link to={`/search?q=${title}`} className={classes.tagsWraperLink}>
+            <Link
+                to={`/home/search?q=${title}`}
+                className={classes.tagsWraperLink}
+            >
                 <div>
                     <Typography className={classes.themsTweetTitle}>
                         {title}

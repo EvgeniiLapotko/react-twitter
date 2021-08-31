@@ -84,7 +84,7 @@ const useStyle = makeStyles(() => ({
     },
 }));
 
-const Signin: React.FC = () => {
+const Signin: React.FC = (): React.ReactElement => {
     const classes = useStyle();
 
     const [openLogin, setOpenLogin] = useState(false);

@@ -1,21 +1,17 @@
 import React from "react";
 
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Home, PageEnter, Signin } from "./pages";
 
 function App() {
     return (
         <div className="App">
-            <Route path="/">
-                <Home />
-            </Route>
-            <Route exact path="/login">
-                <Signin />
-            </Route>
-            <Route exact path="/enter">
-                <PageEnter />
-            </Route>
+            <Switch>
+                <Route path="/" component={Home} />
+                <Route path="/login" component={Signin} />
+                <Route path="/enter" component={PageEnter} />
+            </Switch>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Tags } from "../../store/ducks/tags/contracts/types";
 import { Tweets } from "../../store/ducks/tweets/contracts/types";
+import { Tweet } from "../../store/ducks/tweetSelect/contracts/types";
 
 export const fetchApi = {
     fetchTweet(): Promise<Tweets[]> {
@@ -11,5 +12,8 @@ export const fetchApi = {
     },
     fetchRecommendUsers(): Promise<Tags[]> {
         return axios.get("/recommendUsers").then(({ data }) => data);
+    },
+    fetchSelectTweet(id: string): Promise<Tweet[]> {
+        return axios.get(`/tweets?q=${id}`).then(({ data }) => data);
     },
 };

@@ -35,7 +35,7 @@ const NavBar: React.FC<TypeNavbar> = ({
         <>
             <ul className={classes.navBarList}>
                 <li>
-                    <Link to="/">
+                    <Link to="/home">
                         <IconButton color="primary">
                             <TwitterIcon
                                 color="primary"

@@ -234,4 +234,14 @@ export const useHomeStyle = makeStyles(() => ({
         textDecoration: "none",
         color: "inherit",
     },
+    tweetTitle: {
+        display: "flex",
+        alignItems: "center",
+        "& a": {
+            paddingRight: "20px",
+            paddingTop: "7px",
+            textDecoration: "none",
+            color: "inherit",
+        },
+    },
 }));

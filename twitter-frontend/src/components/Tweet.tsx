@@ -8,8 +8,10 @@ import RetwittIcon from "@material-ui/icons/Repeat";
 import LikeIcon from "@material-ui/icons/FavoriteBorder";
 import ShareIcon from "@material-ui/icons/Share";
 import { useHomeStyle } from "../pages/Home/theme";
+import { Link } from "react-router-dom";
 
 interface TypeTweet {
+    id: string;
     text: string;
     classes: ReturnType<typeof useHomeStyle>;
     user: {
@@ -23,6 +25,7 @@ const Tweet: React.FC<TypeTweet> = ({
     classes,
     text,
     user,
+    id,
 }: TypeTweet): React.ReactElement => {
     return (
         <Paper variant="outlined" className={classes.twittWrapper}>
@@ -46,7 +49,12 @@ const Tweet: React.FC<TypeTweet> = ({
                     <IconButton className={classes.twittTitleButton}>
                         <DotsIcon />
                     </IconButton>
-                    <Typography>{text}</Typography>
+                    <Link
+                        style={{ color: "inherit", textDecoration: "none" }}
+                        to={`tweet/${id}`}
+                    >
+                        <Typography>{text}</Typography>
+                    </Link>
                     <Box className={classes.iconBox}>
                         <div className={classes.iconBoxItem}>
                             <IconButton>

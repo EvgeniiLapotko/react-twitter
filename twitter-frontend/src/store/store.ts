@@ -5,6 +5,7 @@ import rootSaga from "./sagas";
 import { TweetsType } from "./ducks/tweets/contracts/types";
 import { TagsType } from "./ducks/tags/contracts/types";
 import { RecomendUserType } from "./ducks/recomendUsers/contracts/types";
+import { SelectTweetType } from "./ducks/tweetSelect/contracts/types";
 
 declare global {
     interface Window {
@@ -23,6 +24,7 @@ export interface RootState {
     tweets: TweetsType;
     tags: TagsType;
     recommendUsers: RecomendUserType;
+    selectTweet: SelectTweetType;
 }
 
 export const store = createStore(
