@@ -28,7 +28,7 @@ export const fetchApi = {
     fetchSelectTweet(id: string): Promise<Tweet[]> {
         return axios
             .get(
-                `https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets?q=${id}`
+                `https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets?_id=${id}`
             )
             .then(({ data }) => data);
     },

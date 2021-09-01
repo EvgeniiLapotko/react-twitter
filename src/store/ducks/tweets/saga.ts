@@ -25,10 +25,11 @@ export function* addTweetsRequest({
         const data = {
             _id: Math.random().toString(36).substr(2),
             text: payload,
+            tag: "moscow",
             user: {
-                fullname: "Test",
-                username: "@testuser",
-                avatar: "https://source.unsplash.com/random/150x150?2",
+                fullname: "Игорь Лиепас",
+                username: "@igorkushnarev2",
+                avatar: "https://pbs.twimg.com/profile_images/1348214579877326854/5GZmXCmd_200x200.jpg",
             },
         };
         const items = yield call(fetchApi.addTweet, data);

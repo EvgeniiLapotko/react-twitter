@@ -8,7 +8,8 @@ export enum LoadingState {
 export interface Tags {
     _id: string;
     tags: string;
-    count: number
+    count: number;
+    tag: string;
 }
 
 export interface TagsType {

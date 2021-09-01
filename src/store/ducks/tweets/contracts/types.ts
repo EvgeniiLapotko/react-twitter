@@ -13,6 +13,7 @@ export enum AddLoadingState {
 export interface Tweets {
     _id: string;
     text: string;
+    tag: string;
     user: {
         fullname: string;
         username: string;
