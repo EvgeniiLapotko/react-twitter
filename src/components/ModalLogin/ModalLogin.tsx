@@ -7,6 +7,7 @@ import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import "./modal.scss";
+import { Link } from "react-router-dom";
 
 interface ModalLoginType {
     closeModalLogin: () => void;
@@ -242,9 +243,11 @@ function ModalLogin({ closeModalLogin }: ModalLoginType) {
                     </FormControl>
                 </div>
                 <div className="modal__container-btn">
-                    <Button variant="contained" color="primary" fullWidth>
-                        Далее
-                    </Button>
+                    <Link to="/home">
+                        <Button variant="contained" color="primary" fullWidth>
+                            Войти
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

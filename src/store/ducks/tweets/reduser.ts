@@ -17,10 +17,15 @@ export const tweetsReduser = produce(
             draft.item = action.payload;
             draft.loadingState = LoadingState.LOADED;
         }
+
         if (action.type === TweetsActionsType.SET_STATUS) {
             draft.loadingState = action.payload;
         }
         if (action.type === TweetsActionsType.FETCH_TWEETS) {
+            draft.item = [];
+            draft.loadingState = LoadingState.LOADING;
+        }
+        if (action.type === TweetsActionsType.FETCH_FILTER_TWETS) {
             draft.item = [];
             draft.loadingState = LoadingState.LOADING;
         }

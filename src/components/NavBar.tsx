@@ -15,6 +15,8 @@ import { useHomeStyle } from "../pages/Home/theme";
 import AddedTweet from "./AddedTweet";
 
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchTweets } from "../store/ducks/tweets/actionsCreators/actionCreators";
 
 interface TypeNavbar {
     classes: ReturnType<typeof useHomeStyle>;
@@ -23,7 +25,11 @@ interface TypeNavbar {
 const NavBar: React.FC<TypeNavbar> = ({
     classes,
 }: TypeNavbar): React.ReactElement => {
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState<boolean>(false);
+    const backHome = (): void => {
+        dispatch(fetchTweets());
+    };
     const handleOpen = () => {
         setOpen(true);
     };
@@ -35,7 +41,7 @@ const NavBar: React.FC<TypeNavbar> = ({
         <>
             <ul className={classes.navBarList}>
                 <li>
-                    <Link to="/home">
+                    <Link to="/home" onClick={backHome}>
                         <IconButton color="primary">
                             <TwitterIcon
                                 color="primary"

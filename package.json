@@ -34,13 +34,15 @@
         "typescript": "^4.3.5",
         "web-vitals": "^1.1.2"
     },
-    "proxy": "http://localhost:3001/",
+    "homepage": "https://evgeniilapotko.github.io/react-twitter/",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "json-server": "json-server src/db.json --port 3001"
+        "json-server": "json-server src/db.json --port 3001",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -59,5 +61,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "gh-pages": "^3.2.3"
     }
 }

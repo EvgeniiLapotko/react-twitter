@@ -34,14 +34,16 @@ function PageEnter() {
                         </div>
 
                         <div className="enter-btn">
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                fullWidth
-                            >
-                                Войти
-                            </Button>
+                            <Link to="/home">
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
+                                >
+                                    Войти
+                                </Button>
+                            </Link>
                         </div>
                     </form>
                 </div>

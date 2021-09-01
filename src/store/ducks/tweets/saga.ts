@@ -2,6 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { fetchApi } from "../../../services/api/fetchApi";
 import {
     addTweets,
+    FetcFilterTweetsActionInterface,
     FetchAddTweetsActionInterface,
     setStatusAdd,
     setStatusTweets,
@@ -38,7 +39,23 @@ export function* addTweetsRequest({
         yield put(setStatusAdd(AddLoadingState.ERROR));
     }
 }
+
+export function* fetchFilterTweetsRequest({
+    payload: tag,
+}: FetcFilterTweetsActionInterface): any {
+    try {
+        const data = yield call(fetchApi.filterTweets, tag);
+
+        yield put(setTweets(data));
+    } catch (error) {
+        yield put(setStatusTweets(LoadingState.ERROR));
+    }
+}
 export function* watchTweetsAsync() {
     yield takeEvery(TweetsActionsType.FETCH_TWEETS, fetchTweetsRequest);
     yield takeEvery(TweetsActionsType.FETCH_ADD_TWEETS, addTweetsRequest);
+    yield takeEvery(
+        TweetsActionsType.FETCH_FILTER_TWETS,
+        fetchFilterTweetsRequest
+    );
 }

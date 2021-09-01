@@ -258,6 +258,7 @@ export const useHomeStyle = makeStyles(() => ({
     tagsWraperLink: {
         textDecoration: "none",
         color: "inherit",
+        cursor: "pointer",
     },
     tweetTitle: {
         display: "flex",

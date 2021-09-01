@@ -32,6 +32,13 @@ export const fetchApi = {
             )
             .then(({ data }) => data);
     },
+    filterTweets(tag: string): Promise<Tweet[]> {
+        return axios
+            .get(
+                `https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets?tag=${tag}`
+            )
+            .then(({ data }) => data);
+    },
     addTweet(payload: Tweets): Promise<Tweets> {
         return axios
             .post(

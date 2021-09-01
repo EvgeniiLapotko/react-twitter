@@ -196,6 +196,7 @@ const Home: React.FC = (): React.ReactElement => {
                                         classes={classes}
                                         title={item.tags}
                                         tweets={item.count}
+                                        tag={item.tag}
                                     />
                                 ))
                             )}
