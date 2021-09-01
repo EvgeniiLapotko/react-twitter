@@ -5,18 +5,39 @@ import { Tweet } from "../../store/ducks/tweetSelect/contracts/types";
 
 export const fetchApi = {
     fetchTweet(): Promise<Tweets[]> {
-        return axios.get("/tweets").then(({ data }) => data);
+        return axios
+            .get(
+                "https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets"
+            )
+            .then(({ data }) => data);
     },
     fetchTags(): Promise<Tags[]> {
-        return axios.get("/tags").then(({ data }) => data);
+        return axios
+            .get(
+                "https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tags"
+            )
+            .then(({ data }) => data);
     },
     fetchRecommendUsers(): Promise<Tags[]> {
-        return axios.get("/recommendUsers").then(({ data }) => data);
+        return axios
+            .get(
+                "https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/recommendUsers"
+            )
+            .then(({ data }) => data);
     },
     fetchSelectTweet(id: string): Promise<Tweet[]> {
-        return axios.get(`/tweets?q=${id}`).then(({ data }) => data);
+        return axios
+            .get(
+                `https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets?q=${id}`
+            )
+            .then(({ data }) => data);
     },
     addTweet(payload: Tweets): Promise<Tweets> {
-        return axios.post("/tweets", payload).then(({ data }) => data);
+        return axios
+            .post(
+                "https://my-json-server.typicode.com/EvgeniiLapotko/react-twitter/tweets",
+                payload
+            )
+            .then(({ data }) => data);
     },
 };
