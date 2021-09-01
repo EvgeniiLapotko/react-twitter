@@ -42,6 +42,14 @@ export const useHomeStyle = makeStyles(() => ({
             borderBottom: "none",
         },
     },
+    tweetUserInfo: {
+        display: "flex",
+        marginBottom: "25px",
+        position: "relative",
+    },
+    tweetUserInfoAvatar: {
+        marginRight: "25px",
+    },
     twittWrapper: {
         borderRadius: "0",
         borderLeft: "none",
@@ -61,6 +69,18 @@ export const useHomeStyle = makeStyles(() => ({
         position: "relative",
         paddingRight: "50px",
     },
+    userTwetInfo: {
+        position: "relative",
+    },
+    tweetUserName: {
+        color: "grey",
+    },
+    userTwittText: {
+        fontSize: 24,
+        lineHeight: 1.35,
+        color: "#555",
+        marginBottom: "20px",
+    },
 
     twittTitleButton: {
         padding: "6px",
@@ -74,6 +94,11 @@ export const useHomeStyle = makeStyles(() => ({
         maxWidth: "450px",
         position: "relative",
         left: "-15px",
+    },
+    userIconBox: {
+        display: "flex",
+        justifyContent: "space-around",
+        position: "relative",
     },
     iconBoxItem: {
         "& svg:hover": {

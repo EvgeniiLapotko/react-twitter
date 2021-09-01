@@ -12,7 +12,6 @@ import { fetchAddTweets } from "../store/ducks/tweets/actionsCreators/actionCrea
 import {
     addIsErrorTweets,
     addIsLoadingTweets,
-    addLoadingState,
 } from "../store/ducks/tweets/selectors";
 
 interface TypeAddedTweet {
@@ -32,7 +31,6 @@ const AddedTweet: React.FC<TypeAddedTweet> = ({
 
     const addIsLoadingTweet = useSelector(addIsLoadingTweets);
     const addIsErrorTweet = useSelector(addIsErrorTweets);
-    const addTweetState = useSelector(addLoadingState);
 
     const MAX_LENGTH = 290;
 

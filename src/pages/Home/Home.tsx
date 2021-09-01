@@ -73,7 +73,7 @@ const Home: React.FC = (): React.ReactElement => {
                 </Grid>
                 <Grid item xs={6}>
                     <Paper variant="outlined" className={classes.twitterPaper}>
-                        <Route path={["/home"]}>
+                        <Route path={["/home"]} exact>
                             <Paper
                                 variant="outlined"
                                 className={classes.homeTitleWrapper}
@@ -88,7 +88,7 @@ const Home: React.FC = (): React.ReactElement => {
                                 </Box>
                             </Paper>
                         </Route>
-                        <Route path={["/tweet"]}>
+                        <Route path={["/home/tweet", "/home/search"]}>
                             <Paper
                                 variant="outlined"
                                 className={classes.homeTitleWrapper}
@@ -115,7 +115,7 @@ const Home: React.FC = (): React.ReactElement => {
                             </Paper>
                         </Route>
 
-                        <Route path={["/home", "/search"]}>
+                        <Route path="/home" exact>
                             <AddedTweet classes={classes} rowsMin={5} />
                         </Route>
                         <Route path={["/home"]} exact>
@@ -133,7 +133,7 @@ const Home: React.FC = (): React.ReactElement => {
                                 >
                                     <CircularProgress />
                                 </div>
-                            ) : (
+                            ) : tweets ? (
                                 tweets
                                     .map((item) => (
                                         <Tweet
@@ -149,9 +149,11 @@ const Home: React.FC = (): React.ReactElement => {
                                         />
                                     ))
                                     .reverse()
+                            ) : (
+                                <h6>Не удалось получитть данные от сервера</h6>
                             )}
                         </Route>
-                        <Route path="/tweet/:id">
+                        <Route path="/home/tweet/:id">
                             <FullTweet />
                         </Route>
                     </Paper>

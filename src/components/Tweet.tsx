@@ -51,7 +51,7 @@ const Tweet: React.FC<TypeTweet> = ({
                     </IconButton>
                     <Link
                         style={{ color: "inherit", textDecoration: "none" }}
-                        to={`tweet/${id}`}
+                        to={`home/tweet/${id}`}
                     >
                         <Typography>{text}</Typography>
                     </Link>
